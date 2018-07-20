@@ -14,14 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/test', function () {
+    return view('task.index');
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('/timesheet')->group( function(){
-	Route::get('dashboard', 'DashboardController@index')->name('dashboad.index');
-	Route::resource('category', 'CategoryController');
-	Route::resource('task', 'TaskController');
-	Route::resource('task-detail', 'TaskDetailController');
-});
+Route::get('dashboard', 'DashboardController@index')->name('dashboad.index');
+Route::resource('category', 'CategoryController');
+Route::resource('task', 'TaskController');
+Route::resource('task-detail', 'TaskDetailController');

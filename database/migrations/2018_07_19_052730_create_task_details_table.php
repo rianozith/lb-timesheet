@@ -20,7 +20,7 @@ class CreateTaskDetailsTable extends Migration
             $table->integer('time');
             $table->integer('total_task');
             $table->integer('total_time');
-            $table->string('note');
+            $table->string('note')->nullable();
 
             $table->foreign('task_id')->references('id')->on('tasks');
             $table->foreign('category_id')->references('id')->on('categories');

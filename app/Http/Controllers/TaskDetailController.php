@@ -35,7 +35,20 @@ class TaskDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $detail = TaskDetail::create([
+            'task_id' => $request->task_id,
+            'category_id' => $request->category,
+            'time' => $request->time,
+            'total_task' => $request->total_task,
+            'total_time' => $request->total_task * $request->time,
+        ]);
+
+        if ($detail) {
+            flash('timesheet berhasil ditambahkan')->success();
+        }else{
+            flash('timesheet gagal ditambahkan')->error();
+        }
+        return redirect()->route('task.show', $detail->task_id);
     }
 
     /**
@@ -80,6 +93,9 @@ class TaskDetailController extends Controller
      */
     public function destroy(TaskDetail $taskDetail)
     {
-        //
+        TaskDetail::find($taskDetail->id)->delete();
+
+        flash('task detail berhasil dihapus')->success();
+        return redirect()->back();
     }
 }

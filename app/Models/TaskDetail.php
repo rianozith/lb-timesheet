@@ -37,4 +37,25 @@ class TaskDetail extends Model
 		return $this->belongsTo('App\Models\Task');
 	}
 
+    public function getHumanCategoryAttribute(){
+
+        // if ($this->category_id == 1) {
+        //     $category = 'Experimental';
+        // }elseif ($this->category_id == 2) {
+        //     $category = 'Side by Side';
+        // }else{
+        //     $category = 'Undefinied';
+        // }
+        // return $category;
+
+        switch($this->category_id){
+            case 1 :
+                return 'Experimental';
+            case 2 :
+                return 'Side by Side';
+            default:
+                return 'Undefinied';
+        }
+    }
+
 }

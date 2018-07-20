@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $fillabel = [
+    protected $fillable = [
     	'name', 'month'
     ];
 
@@ -19,4 +19,15 @@ class Task extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function totalTime(){
+
+        return 'total time';
+    }
+
+    public function totalTask(){
+
+        return 'total task';
+    }
+
 }
