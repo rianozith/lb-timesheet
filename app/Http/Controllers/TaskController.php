@@ -75,7 +75,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('task.edit', compact($task));
     }
 
     /**
@@ -87,7 +87,10 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        Task::update([$request->all()]);
+
+        flash('task berahasil diedit');
+        return redirect()->back();
     }
 
     /**

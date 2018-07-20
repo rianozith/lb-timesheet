@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TaskDetail;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class TaskDetailController extends Controller
@@ -70,7 +71,8 @@ class TaskDetailController extends Controller
      */
     public function edit(TaskDetail $taskDetail)
     {
-        //
+        $categories = Category::pluck('name', 'id');
+        return view('task-detail.edit', compact('categories', 'taskDetail'));
     }
 
     /**
@@ -82,7 +84,15 @@ class TaskDetailController extends Controller
      */
     public function update(Request $request, TaskDetail $taskDetail)
     {
-        //
+        $detail = TaskDetail::find($taskDetail->id);
+        $detail->category_id = $request->category;
+        $detail->time = $request->time;
+        $detail->total_task = $request->total_task;
+        $detail->total_time = $request->total_task * $request->time;
+        $detail->save();
+
+        flash('task detail berahasil diedit');
+        return redirect()->route('task.show', $taskDetail->id);
     }
 
     /**

@@ -50,7 +50,7 @@
 						<td class="text-center">{{$detail->total_task}}</td>
 						<td class="text-center">{{$detail->total_time}}</td>
 						<td class="text-center">
-							<a class="btn btn-sm btn-warning" href="{{route('task.edit', $detail->id)}}" title="" style="float: left;">edit</a>
+							<a class="btn btn-sm btn-warning" href="{{route('task-detail.edit', $detail->id)}}" title="" style="float: left;">edit</a>
 							{{-- <button class="btn btn-sm btn-warning" type="button" data-toggle="modal" data-target="#editTaskDetail">Edit</button> --}}
 							{!! Form::open(['route' => ['task-detail.destroy', $detail->id], 'method' => 'delete' ]) !!}
 							<button class="btn btn-sm btn-danger" type="submit">Delete</button>
