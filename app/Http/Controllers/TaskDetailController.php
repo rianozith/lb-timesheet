@@ -38,10 +38,11 @@ class TaskDetailController extends Controller
     {
         $detail = TaskDetail::create([
             'task_id' => $request->task_id,
+            'date' => $request->date,
             'category_id' => $request->category,
             'time' => $request->time,
-            'total_task' => $request->total_task,
-            'total_time' => $request->total_task * $request->time,
+            'mytask' => $request->mytask,
+            'sub_total' => $request->mytask * $request->time,
         ]);
 
         if ($detail) {
@@ -85,14 +86,15 @@ class TaskDetailController extends Controller
     public function update(Request $request, TaskDetail $taskDetail)
     {
         $detail = TaskDetail::find($taskDetail->id);
-        $detail->category_id = $request->category;
-        $detail->time = $request->time;
-        $detail->total_task = $request->total_task;
-        $detail->total_time = $request->total_task * $request->time;
+        $detail->date           = $request->date;
+        $detail->category_id    = $request->category;
+        $detail->time           = $request->time;
+        $detail->mytask         = $request->mytask;
+        $detail->sub_total      = $request->mytask * $request->time;
         $detail->save();
 
         flash('task detail berahasil diedit');
-        return redirect()->route('task.show', $taskDetail->id);
+        return redirect()->route('task.show', $taskDetail->task_id);
     }
 
     /**

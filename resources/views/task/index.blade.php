@@ -1,70 +1,86 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+@extends('layouts.dashboard')
 
-	<style type="text/css" media="screen">
-		.lb-table-task{
-			text-align: center;
-			font-weight: bold;
-		}
-		.lb-table-empty{
-			font-weight: bold;
-			font-size: 20px;
-			text-align: center;
-		}
-	</style>
-</head>
-<body>
-	<div class="container">
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<button class="btn btn-info" type="button" data-toggle="modal" data-target="#newTask">Tambah Task</button>
-					@include('task.index-modal')
-				</div>
-			</div>
+@section('sub-header')
+My Summary
+@endsection
+
+@push('css')
+<style type="text/css" media="screen">
+	.lb-table-task{
+		text-align: center;
+		font-weight: bold;
+	}
+	.lb-table-empty{
+		font-weight: bold;
+		font-size: 20px;
+		text-align: center;
+	}
+</style>
+@endpush
+
+@section('content')
+
+
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<button class="btn btn-info" type="button" data-toggle="modal" data-target="#newTask">Tambah Task</button>
+			@include('task._modal-index')
 		</div>
+	</div>
+</div>
 
-		<div class="col-md-12">
-			<table class="table table-hover table-striped table-responsive">
-				<thead>
-					<tr>
-						<td class="lb-table-task">No</td>
-						<td class="lb-table-task">Nama</td>
-						<td class="lb-table-task">Bulan</td>
-						<td class="lb-table-task">Action</td>
-					</tr>
-				</thead>
-				<tbody>
-					@forelse($tasks as $key => $task)
-					<tr>
-						<td class="text-center">{{$key+1}}</td>
-						<td class="text-center">{{$task->name}}</td>
-						<td class="text-center">{{$task->month}}</td>
-						<td class="">
-							<a class="btn btn-sm btn-primary" href="{{route('task.show', $task->id)}}" title="" style="float: left">Lihat</a>
-							{!! Form::open(['route' => ['task.destroy', $task->id], 'method' => 'delete']) !!}
-							<button class="btn btn-sm btn-danger" type="submit">Delete</button>
-							{!! Form::close() !!}
-						</td>
-					</tr>
-					@empty
-					<tr>
-						<td class="lb-table-empty" colspan="4" >Belum ada data</td>
-					</tr>
-					@endforelse
-				</tbody>
-			</table>
-		</div>
-		
-	</div> {{-- end container --}}
+<div class="col-md-12">
+	<table class="table table-hover table-striped table-responsive">
+		<thead>
+			<tr>
+				<th class="text-center">#</th>
+		        <th class="text-center">Period</th>
+		        <th class="text-center">Total Task</th>
+		        <th class="text-center">Total Time</th>
+		        <th class="text-center">Grand Total</th>
+		        <th class="text-center">Earnings</th>
+		        <th class="text-center">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@forelse($tasks as $key => $task)
+			<tr>
+				<td class="text-center">{{$key+1}}</td>
+				<td class="text-center">{{$task->period_idn}}</td>
+				<td class="text-center">{{$task->total_time}}</td>
+				<td class="text-center">{{$task->total_task}}</td>
+				<td class="text-center">{{$task->grand_total}}</td>
+				<td class="text-center">${{$task->earning}}</td>
+				<td class="">
+					<a class="btn btn-sm btn-primary" href="{{route('task.show', $task->id)}}" title="" style="float: left">Show</a>
+					{!! Form::open(['route' => ['task.destroy', $task->id], 'method' => 'delete']) !!}
+					<button class="btn btn-sm btn-danger" type="submit">Delete</button>
+					{!! Form::close() !!}
+				</td>
+			</tr>
+			@empty
+			<tr>
+				<td class="lb-table-empty" colspan="7" >Belum ada data</td>
+			</tr>
+			@endforelse
+		</tbody>
+	</table>
+</div>
 
-	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
-</body>
-</html>
+@endsection
+
+@push('css')
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@endpush
+
+@push('js')
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+		$( function() {
+		    $( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+		} );
+
+			
+	</script>
+@endpush

@@ -10,7 +10,7 @@ My Daily Task
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<button class="btn btn-info" type="button" data-toggle="modal" data-target="#newTaskDetail">Tambah detail</button>
-			@include('task._modal-show')
+			@include('task-detail._modal-index')
 		</div>
 	</div>
 </div>
@@ -54,7 +54,7 @@ My Daily Task
 	</table>
 </div>
 <div>
-	<a class="btn btn-default" href="{{route('task.index')}}" title="">Back</a>
+	<a class="btn btn-default" href="{{route('task-detail.index')}}" title="">Back</a>
 </div>
 
 @endsection

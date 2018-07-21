@@ -12,15 +12,9 @@
         <div class="modal-body">
 
           <div class="form-group">
-            <label class="control-label col-sm-2" for="name">Nama</label>
+            <label class="control-label col-sm-2" for="name">Periode</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="month">Bulan</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="month" id="month" placeholder="Enter month">
+              <input type="text" class="form-control" name="period" id="datepicker" placeholder="Enter period">
             </div>
           </div>
           

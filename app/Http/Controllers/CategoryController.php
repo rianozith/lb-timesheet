@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -35,7 +36,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create(['name' => $request->name]);
+        if ($category) {
+            flash('Berhasil menambahkan category')->success();
+        }else{
+            flash('Gagal menambahkan category')->danger();
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -57,7 +65,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $categories = Category::all();
+        $category = Category::find($category->id);
+        return view('category.edit', compact('categories', 'category'));
     }
 
     /**
@@ -69,7 +79,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category = Category::find($category->id);
+        $category->name = $request->name;
+        $category->save();
+
+        flash('Category berhasil diupdate');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -80,6 +95,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::find($category->id)->delete();
+        flash('Category berhasil dihapus');
+        return redirect()->route('category.index');
     }
 }

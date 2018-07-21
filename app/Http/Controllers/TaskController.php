@@ -38,9 +38,10 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request->all()); //debuging
         $task = Task::create([
-            'name' => $request->name,
-            'month' => $request->month,
+            'period' => $request->period,
         ]);
 
         if($task){

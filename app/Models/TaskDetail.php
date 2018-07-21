@@ -3,27 +3,28 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class TaskDetail extends Model
 {
     protected $fillable = [
-    	'task_id', 'category_id', 'time','total_task', 'total_time', 'note'
+    	'date', 'task_id', 'category_id', 'date', 'time','mytask', 'sub_total', 'note'
     ];
 
     public static function boot() {
         parent::boot();
 
         static::saved(function($model) {
-            if ($model->total_time < 1) {
+            if ($model->sub_total < 1) {
                 $model->refreshTotalTime();
             }
-            // $model->order->refreshTotalPayment();
+            $model->task->refreshTotalTask();
         });
     }
     public function refreshTotalTime()
     {
-        $total_time = $this->time * $this->total_task;
-        $this->total_time = $total_time;
+        $sub_total = $this->time * $this->mytask;
+        $this->sub_total = $sub_total;
         $this->save();
     }
 
@@ -37,25 +38,20 @@ class TaskDetail extends Model
 		return $this->belongsTo('App\Models\Task');
 	}
 
-    public function getHumanCategoryAttribute(){
+    // public function getHumanCategoryAttribute(){
 
-        // if ($this->category_id == 1) {
-        //     $category = 'Experimental';
-        // }elseif ($this->category_id == 2) {
-        //     $category = 'Side by Side';
-        // }else{
-        //     $category = 'Undefinied';
-        // }
-        // return $category;
+    //     switch($this->category_id){
+    //         case 1 :
+    //             return 'Experimental';
+    //         case 2 :
+    //             return 'Side by Side';
+    //         default:
+    //             return 'Undefinied';
+    //     }
+    // }
 
-        switch($this->category_id){
-            case 1 :
-                return 'Experimental';
-            case 2 :
-                return 'Side by Side';
-            default:
-                return 'Undefinied';
-        }
+    public function getDateIdnAttribute(){
+        return Carbon::parse($this->date)->format('d-m-Y');
     }
 
 }
