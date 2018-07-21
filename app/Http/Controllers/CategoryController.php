@@ -36,6 +36,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'name' => 'string',
+        ]);
+        
         $category = Category::create(['name' => $request->name]);
         if ($category) {
             flash('Berhasil menambahkan category')->success();
@@ -65,6 +69,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        $this->validate($request,[
+            'name' => 'string',
+        ]);
+        
         $categories = Category::all();
         $category = Category::find($category->id);
         return view('category.edit', compact('categories', 'category'));

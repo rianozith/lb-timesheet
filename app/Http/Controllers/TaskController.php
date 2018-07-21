@@ -39,7 +39,10 @@ class TaskController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all()); //debuging
+        $this->validate($request,[
+            'period' => 'string',
+        ]);
+
         $task = Task::create([
             'period' => $request->period,
         ]);
@@ -88,6 +91,10 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        $this->validate($request,[
+            'period' => 'string',
+        ]);
+
         Task::update([$request->all()]);
 
         flash('task berahasil diedit');

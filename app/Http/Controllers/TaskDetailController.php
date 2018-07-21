@@ -36,6 +36,14 @@ class TaskDetailController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'task_id' => 'integer',
+            'date' => 'date',
+            'category_id' => 'integer',
+            'time' => 'numeric',
+            'mytask' => 'integer',
+        ]);
+
         $detail = TaskDetail::create([
             'task_id' => $request->task_id,
             'date' => $request->date,
@@ -85,6 +93,14 @@ class TaskDetailController extends Controller
      */
     public function update(Request $request, TaskDetail $taskDetail)
     {
+        $this->validate($request,[
+            'task_id' => 'integer',
+            'date' => 'date',
+            'category_id' => 'integer',
+            'time' => 'numeric',
+            'mytask' => 'integer',
+        ]);
+        
         $detail = TaskDetail::find($taskDetail->id);
         $detail->date           = $request->date;
         $detail->category_id    = $request->category;

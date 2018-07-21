@@ -11,12 +11,7 @@
         {!! Form::open(['route' => 'task.store', 'method' => 'post', 'class' => 'form-horizontal']) !!}
         <div class="modal-body">
 
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="name">Periode</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="period" id="datepicker" placeholder="Enter period">
-            </div>
-          </div>
+          @include('task._form')
           
         </div>
         <div class="modal-footer">

@@ -12,7 +12,9 @@ Category
 			<div class="form-group">
 	            <label class="control-label col-md-4" for="name">Category Name</label>
 	            <div class="col-md-8">
-	              <input type="text" name="name" placeholder="Input Category Name">
+	              {{-- <input type="text" name="name" placeholder="Input Category Name"> --}}
+	              @include('category._form')
+	              
 	            </div>
 	        </div>
 

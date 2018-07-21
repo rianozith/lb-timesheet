@@ -20,7 +20,7 @@ Category Edit
 						@forelse($categories as $num => $category)
 						<tr>
 							<td>{{$num+1}}</td>
-							<td>{{$category->name}}}</td>
+							<td>{{$category->name}}</td>
 						</tr>
 						@empty
 						<tr>
@@ -32,11 +32,11 @@ Category Edit
 			</div>
 		</div>
 		<div class="col-md-6">
-			{!! Form::open(['route' => ['category.update', $category->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+			{!! Form::model($category, ['route' => ['category.update', $category->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
 			<div class="form-group">
 	            <label class="control-label col-md-4" for="name">Category Name</label>
 	            <div class="col-md-8">
-	              {!! Form::text('name', $category->name, []) !!}
+	              @include('category._form')
 	            </div>
 	        </div>
 
