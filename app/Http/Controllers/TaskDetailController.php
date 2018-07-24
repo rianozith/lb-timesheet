@@ -120,10 +120,13 @@ class TaskDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(TaskDetail $taskDetail)
-    {
+    {   
+        \Log::info('riano');
+        \Log::info($taskDetail);
         TaskDetail::find($taskDetail->id)->delete();
 
         flash('task detail berhasil dihapus')->success();
         return redirect()->back();
+        // return response()->json(true);
     }
 }

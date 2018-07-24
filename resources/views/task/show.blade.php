@@ -38,10 +38,11 @@ My Daily Task
 				<td class="text-center">{{$detail->mytask}}</td>
 				<td class="text-center">{{$detail->sub_total}}</td>
 				<td class="text-center">
-					<a class="btn btn-sm btn-warning" href="{{route('task-detail.edit', $detail->id)}}" title="" style="float: left;">edit</a>
 					{{-- <button class="btn btn-sm btn-warning" type="button" data-toggle="modal" data-target="#editTaskDetail">Edit</button> --}}
-					{!! Form::open(['route' => ['task-detail.destroy', $detail->id], 'method' => 'delete' ]) !!}
-					<button class="btn btn-sm btn-danger" type="submit">Delete</button>
+					{!! Form::open(['route' => ['task-detail.destroy', $detail->id], 'method' => 'delete', 'name' => 'deleteDetailForm' ]) !!}
+					<a class="btn btn-sm btn-warning" href="{{route('task-detail.edit', $detail->id)}}" title="" style="">edit</a>
+					{{-- <input type="hidden" name="detail-id" value="{{$detail->id}}"> --}}
+					<button class="btn btn-sm btn-danger delete-detail" detail-id="{{$detail->id}}" type="submit">Delete</button>
 					{!! Form::close() !!}
 				</td>
 			</tr>
@@ -75,12 +76,42 @@ My Daily Task
 @endpush
 
 @push('js')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		$( function() {
 		    $( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
 		} );
 
-			
+		$('button.delete-detail').click(function() {
+		    event.preventDefault(); // prevent form submit
+		    var detailId = $(this).attr("detail-id");
+			var form = event.target.form; // storing the form
+			// var form = document.forms["deleteDetailForm"]; // storing the form
+		    deleteDetail(detailId, form);
+		});
+		
+		function deleteDetail(detailId, form) {
+
+		    swal({
+		      title: "Are you sure?", 
+		      text: "Are you sure that you want to delete this?", 
+		      icon: "warning",
+		      buttons: true,
+		      buttons: [true, 'Yes, delete it!'],
+		      dangerMode: true,
+		    })
+		    .then((willDelete) => {
+			  if (willDelete) {
+			    // swal("Poof! Your record has been deleted!", {
+			    //   icon: "success",
+			    // });
+			    form.submit();
+			  } else {
+			    swal("Your record is safe!");
+			  }
+			});
+		}			
 	</script>
+
 @endpush
