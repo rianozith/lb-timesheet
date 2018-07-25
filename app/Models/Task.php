@@ -42,6 +42,10 @@ class Task extends Model
         return Carbon::parse($this->period)->format('F Y');
     }
 
+    public function getMonthNameAttribute(){
+        return Carbon::parse($this->period)->month();
+    }
+
     
 
 }

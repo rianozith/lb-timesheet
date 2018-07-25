@@ -8,7 +8,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Task Baru</h4>
         </div>
-        {!! Form::open(['route' => 'task.store', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+        {!! Form::open(['route' => 'task.store', 'method' => 'post', 'class' => 'form-horizontal', 'autocomplete' => "off"]) !!}
         <div class="modal-body">
 
           @include('task._form')

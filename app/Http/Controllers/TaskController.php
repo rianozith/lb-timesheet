@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\TaskDetail;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -16,7 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('period', 'asc')->get();
         return view('task.index', compact('tasks'));
     }
 
@@ -38,14 +39,23 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        // dd(Carbon::parse($request->period)); //debuging
 
         $this->validate($request,[
             'period' => 'string',
         ]);
 
-        $task = Task::create([
-            'period' => $request->period,
-        ]);
+        $period = Carbon::parse($request->period);
+
+        if (Task::where('period', $period)->first()) {
+            flash('Task sudah tersedia')->warning();
+            return redirect()->route('task.index');
+        }else{
+            $task = Task::create([
+                'period' => $period,
+            ]);    
+        }
+        
 
         if($task){
             flash('Task berhasil ditambahkan')->success();
@@ -65,10 +75,10 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        $details = TaskDetail::where('task_id', $task->id)->orderBy('created_at', 'asc')->get();
+        $details = TaskDetail::where('task_id', $task->id)->orderBy('date', 'asc')->get();
         $task_id = $task->id;
         $categories = Category::pluck('name', 'id');
-        return view('task.show', compact('task_id', 'details', 'categories' ));
+        return view('task.show', compact('task' ,'task_id', 'details', 'categories' ));
     }
 
     /**

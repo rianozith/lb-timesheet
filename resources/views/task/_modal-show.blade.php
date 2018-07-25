@@ -8,7 +8,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Task Detail Baru</h4>
         </div>
-        {!! Form::open(['route' => 'task-detail.store', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+        {!! Form::open(['route' => 'task-detail.store', 'method' => 'post', 'class' => 'form-horizontal', 'autocomplete' => 'off']) !!}
         <div class="modal-body">
           {!! Form::hidden('task_id', $task_id, []) !!}
 

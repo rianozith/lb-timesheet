@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TaskDetail;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TaskDetailController extends Controller
 {
@@ -46,7 +47,7 @@ class TaskDetailController extends Controller
 
         $detail = TaskDetail::create([
             'task_id' => $request->task_id,
-            'date' => $request->date,
+            'date' => Carbon::createFromFormat('d-m-Y', $request->date),
             'category_id' => $request->category,
             'time' => $request->time,
             'mytask' => $request->mytask,
@@ -123,7 +124,9 @@ class TaskDetailController extends Controller
     {   
         \Log::info('riano');
         \Log::info($taskDetail);
-        TaskDetail::find($taskDetail->id)->delete();
+        $detail = TaskDetail::find($taskDetail->id);
+        $detail->delete();
+        $detail->task->refreshTotalTask();
 
         flash('task detail berhasil dihapus')->success();
         return redirect()->back();

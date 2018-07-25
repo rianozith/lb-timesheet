@@ -55,7 +55,7 @@ My Summary
 				<td class="text-center">
 					
 					{!! Form::open(['route' => ['task.destroy', $task->id], 'method' => 'delete']) !!}
-					<a class="btn btn-sm btn-primary" href="{{route('task.show', $task->id)}}" title="" style="">Details</a>
+					<a class="btn btn-sm btn-primary {{ count($task->details) < 1 ? '' : 'button-position'}}" href="{{route('task.show', $task->id)}}" title="" style="">Details</a>
 					@if(count($task->details) < 1)
 					<button class="btn btn-sm btn-danger delete-task" task-id="{{$task->id}}" type="submit">Delete</button>
 					@endif
@@ -76,6 +76,14 @@ My Summary
 @push('css')
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<style type="text/css" media="screen">
+		.ui-datepicker-calendar {
+		   display: none;
+	   }
+	   .button-position{
+	   	margin-left: -60px
+	   }
+	</style>
 @endpush
 
 @push('js')
@@ -83,7 +91,15 @@ My Summary
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		$( function() {
-		    $( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+		    $( "#datepicker" ).datepicker({
+		    	changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'MM yy',
+            onClose: function(dateText, inst) { 
+                $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+            }
+		    });
 		} );
 			
 	</script>

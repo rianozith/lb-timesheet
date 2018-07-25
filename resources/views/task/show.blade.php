@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('sub-header')
-My Daily Task
+	{{ $task->period_idn }} 
 @endsection
 
 @section('content')
@@ -80,7 +80,12 @@ My Daily Task
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		$( function() {
-		    $( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+		    $( "#datepicker" ).datepicker({
+		    	// changeMonth: false,
+		    	// changeYear: false,
+		    	// stepMonths: 0,
+		    	dateFormat: 'dd-mm-yy',
+		    });
 		} );
 
 		$('button.delete-detail').click(function() {
