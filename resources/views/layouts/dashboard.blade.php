@@ -107,6 +107,7 @@
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 
     @stack('js')
+    @include('sweet::alert')
     <script>
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     </script>

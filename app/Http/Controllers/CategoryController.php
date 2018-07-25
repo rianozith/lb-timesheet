@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Alert;
 
 class CategoryController extends Controller
 {
@@ -101,7 +102,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if ( count( $category->taskDetail) > 0) {
-            flash('Category tidak bisa dihapus karena sedang digunakan')->warning();
+            // flash('Category tidak bisa dihapus karena sedang digunakan')->warning();
+            Alert::warning('Category tidak bisa dihapus karena sedang digunakan')->autoclose(3000);
             return redirect()->route('category.index');
         }else{
             Category::find($category->id)->delete();

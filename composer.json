@@ -10,7 +10,8 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
-        "nesbot/carbon": "^1.32"
+        "nesbot/carbon": "^1.32",
+        "uxweb/sweet-alert": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
