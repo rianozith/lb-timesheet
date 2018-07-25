@@ -44,7 +44,7 @@ Category
 							<td class="text-center">
 								{!! Form::open(['route' => ['category.destroy', $category->id], 'method' => 'delete']) !!}
 								<a class="btn btn-sm btn-warning" href="{{route('category.edit', $category->id)}}" title="">Edit</a>
-								<button class="btn btn-sm btn-danger" type="submiy">Delete</button>
+								<button class="btn btn-sm btn-danger delete-category" category-id="{{$category->id}}" type="submit">Delete</button>
 
 								{!! Form::close() !!}
 							</td>
@@ -62,3 +62,34 @@ Category
 </div>
 @endsection
 
+
+@push('js')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		$('.delete-category').click(function(){
+			event.preventDefault();
+			// var form = event.target.form;
+			var categoryId = $(this).attr("category-id");
+			var form = event.target.form; // storing the form
+			console.log(form);
+			deleteCategory(form);
+		});
+
+		function deleteCategory(form, categoryId){
+			swal({
+				title: "Are you sure?", 
+				text: "Are you sure that you want to delete this?", 
+				icon: "warning",
+				buttons: true,
+				buttons: [true, 'Yes, delete it!'],
+				dangerMode: true,
+			}).then((willDelete) => {
+				if (willDelete) {
+			    form.submit();
+			  } else {
+			    swal("Action canceled!");
+			  }
+			});
+		}	
+	</script>
+@endpush

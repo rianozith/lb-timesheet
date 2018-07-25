@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = [
-    	'name', 'date', 'parent_id', 'soft_index'
+    	'name', 'date', 'parent_id', 'soft_index',
     ];
 
-    public function categories()
+    public function taskDetail()
 	{
 		return $this->hasMany('App\Models\TaskDetail');
 	}

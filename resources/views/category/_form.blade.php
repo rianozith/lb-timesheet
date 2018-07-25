@@ -1,2 +1,2 @@
 {{-- <input class="form-control" type="text" name="name" value="{{old('name',$category->name)}}" placeholder="Input Category Name"> --}}
-{!! Form::text('name', null, ['class'=>"form-control", 'id'=>"name", 'placeholder'=>"Enter Category Name"]) !!}
+{!! Form::text('name', null, ['class'=>"form-control", 'id'=>"name", 'placeholder'=>"Enter Category Name", 'required']) !!}

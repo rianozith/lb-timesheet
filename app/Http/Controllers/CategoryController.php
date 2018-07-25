@@ -69,9 +69,6 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $this->validate($request,[
-            'name' => 'string',
-        ]);
         
         $categories = Category::all();
         $category = Category::find($category->id);
@@ -103,8 +100,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        Category::find($category->id)->delete();
-        flash('Category berhasil dihapus');
-        return redirect()->route('category.index');
+        if ( count( $category->taskDetail) > 0) {
+            flash('Category tidak bisa dihapus karena sedang digunakan')->warning();
+            return redirect()->route('category.index');
+        }else{
+            Category::find($category->id)->delete();
+            flash('Category berhasil dihapus')->success();
+            return redirect()->route('category.index');
+        }
     }
 }

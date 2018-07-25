@@ -43,6 +43,7 @@ Category Edit
 	        <div class="form-group">
 	        	<div class="col-md-8 col-md-offset-4">
 	        		<button class="btn btn-info" type="submit">Update</button>
+        		<a href="{{route('category.index')}}" class="btn btn-default">Cancel</a >
 	        	</div>
 	        </div>
 
