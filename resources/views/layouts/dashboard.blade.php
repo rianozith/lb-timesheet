@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('img/lion.png') }}">
 
     <title>Lionbridge timesheet dashboard</title>
 
@@ -84,7 +84,9 @@
               <h2 class="sub-header">@yield('sub-header')</h2>
             </div>
             <div class="panel-body">
+
               @yield('content')
+              
             </div>
           </div>
           

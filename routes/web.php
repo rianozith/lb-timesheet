@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.index');
-});
+Route::get('/', 'TaskController@index');
 Route::get('/test', function () {
     return view('task.index');
 });
@@ -26,3 +24,4 @@ Route::get('dashboard', 'DashboardController@index')->name('dashboad.index');
 Route::resource('category', 'CategoryController');
 Route::resource('task', 'TaskController');
 Route::resource('task-detail', 'TaskDetailController');
+Route::resource('chart', 'ChartController');
