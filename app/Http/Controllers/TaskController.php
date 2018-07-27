@@ -7,6 +7,7 @@ use App\Models\TaskDetail;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Alert;
 
 class TaskController extends Controller
 {
@@ -45,10 +46,11 @@ class TaskController extends Controller
             'period' => 'string',
         ]);
 
-        $period = Carbon::parse($request->period);
+        $period = Carbon::parse($request->period)->format('Y-m-d');
 
-        if (Task::where('period', $period)->first()) {
+        if ($check = Task::where('period', 'LIKE', '%'.$period.'%')->first()) {
             flash('Task sudah tersedia')->warning();
+            Alert::warning('Task sudah tersedia')->autoclose(3000);
             return redirect()->route('task.index');
         }else{
             $task = Task::create([

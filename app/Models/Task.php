@@ -44,9 +44,8 @@ class Task extends Model
     public function getPeriodMonthAttribute(){
         return Carbon::parse($this->period)->format('M y');
     }
-
-    public function getMonthNameAttribute(){
-        return Carbon::parse($this->period)->month();
+    public function hasMonth(){
+        return ;
     }
 
     
