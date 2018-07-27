@@ -32,7 +32,7 @@
 			@forelse($details as $key => $detail)
 			<tr>
 				<td class="text-center">{{$key+1}}</td>
-				<td class="text-center">{{$detail->date_idn}}</td>
+				<td class="text-center" style="{{\Carbon\Carbon::parse($detail->date)->format('F') == \Carbon\Carbon::parse($task->period)->format('F') ? '' : 'color:red'}}">{{$detail->date_idn}}</td>
 				<td class="text-center">{{$detail->category->name}}</td>
 				<td class="text-center">{{$detail->time}}</td>
 				<td class="text-center">{{$detail->mytask}}</td>
