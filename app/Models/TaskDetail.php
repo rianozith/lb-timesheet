@@ -54,4 +54,15 @@ class TaskDetail extends Model
         return Carbon::parse($this->date)->format('d-m-Y');
     }
 
+    public function dailyTotalTime(){
+        
+
+    }
+    public function dailyTotalTask(){
+        
+    }
+    public function dailyGrandTotalTime(){
+        
+    }
+
 }

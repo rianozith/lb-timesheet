@@ -29,23 +29,79 @@
 			</tr>
 		</thead>
 		<tbody>
-			@forelse($details as $key => $detail)
+			@php $aDate = []; $num = 1; $row = []; $daily_time=0; $daily_task=0; $daily_total=0; @endphp
+			@forelse($groupDate as $key => $details)
+				@foreach($details as $detail)
+				@php 
+				$daily_time += $detail->time;
+				$daily_task += $detail->mytask;
+				$daily_total += $detail->sub_total;
+				@endphp
+				<tr>
+					<td class="text-center">{{!in_array($detail->date, $aDate) ? $num : ''}}</td>
+					<td class="text-center" style="{{\Carbon\Carbon::parse($detail->date)->format('F') == \Carbon\Carbon::parse($task->period)->format('F') ? '' : 'color:red'}}">
+						@if(!in_array($detail->date, $aDate))
+							{{ $detail->date_idn}}
+						    @php $aDate[] = $detail->date; $num = $num+1; $row[] = $key;@endphp
+						@endif
+					</td>
+					<td class="text-center">{{$detail->category->name}}</td>
+					<td class="text-center">{{$detail->time}}</td>
+					<td class="text-center">{{$detail->mytask}}</td>
+					<td class="text-center">{{$detail->sub_total}}</td>
+					<td class="text-center">
+						{!! Form::open(['route' => ['task-detail.destroy', $detail->id], 'method' => 'delete', 'name' => 'deleteDetailForm' ]) !!}
+						<a class="btn btn-sm btn-warning" href="{{route('task-detail.edit', $detail->id)}}" title="" style="">edit</a>
+						<button class="btn btn-sm btn-danger delete-detail" detail-id="{{$detail->id}}" type="submit">Delete</button>
+						{!! Form::close() !!}
+					</td>
+				</tr>
+				
+				@endforeach
+				<tr style="background-color: lightgreen">
+					<td colspan="3"></td>
+					<td class="text-center" style="font-weight: bold;">{{$daily_time}}</td>
+					<td class="text-center" style="font-weight: bold;">{{$daily_task}}</td>
+					<td class="text-center" style="font-weight: bold;">{{$daily_total}}</td>
+					<td></td>
+				</tr>
+			{{-- @forelse($details as $key => $detail)
 			<tr>
-				<td class="text-center">{{$key+1}}</td>
-				<td class="text-center" style="{{\Carbon\Carbon::parse($detail->date)->format('F') == \Carbon\Carbon::parse($task->period)->format('F') ? '' : 'color:red'}}">{{$detail->date_idn}}</td>
+				<td class="text-center">{{!in_array($detail->date, $aDate) ? $num : ''}}</td>
+				<td class="text-center" style="{{\Carbon\Carbon::parse($detail->date)->format('F') == \Carbon\Carbon::parse($task->period)->format('F') ? '' : 'color:red'}}">
+					@if(!in_array($detail->date, $aDate))
+						{{ $detail->date_idn}}
+					    @php $aDate[] = $detail->date; $num = $num+1; $row[] = $key;@endphp
+					@endif
+				</td>
 				<td class="text-center">{{$detail->category->name}}</td>
 				<td class="text-center">{{$detail->time}}</td>
 				<td class="text-center">{{$detail->mytask}}</td>
 				<td class="text-center">{{$detail->sub_total}}</td>
 				<td class="text-center">
-					{{-- <button class="btn btn-sm btn-warning" type="button" data-toggle="modal" data-target="#editTaskDetail">Edit</button> --}}
 					{!! Form::open(['route' => ['task-detail.destroy', $detail->id], 'method' => 'delete', 'name' => 'deleteDetailForm' ]) !!}
 					<a class="btn btn-sm btn-warning" href="{{route('task-detail.edit', $detail->id)}}" title="" style="">edit</a>
-					{{-- <input type="hidden" name="detail-id" value="{{$detail->id}}"> --}}
 					<button class="btn btn-sm btn-danger delete-detail" detail-id="{{$detail->id}}" type="submit">Delete</button>
 					{!! Form::close() !!}
 				</td>
 			</tr>
+			@if(isset($details[$key+1]->date) and $detail->date != $details[$key+1]->date)
+			<tr style="background-color: lightgreen">
+				<td colspan="3"></td>
+				<td class="text-center" style="font-weight: bold;">0</td>
+				<td class="text-center" style="font-weight: bold;">0</td>
+				<td class="text-center" style="font-weight: bold;">0</td>
+				<td></td>
+			</tr>
+			@elseif(!isset($details[$key+1]->date))
+			<tr style="background-color: lightgreen">
+				<td colspan="3"></td>
+				<td class="text-center" style="font-weight: bold;">0</td>
+				<td class="text-center" style="font-weight: bold;">0</td>
+				<td class="text-center" style="font-weight: bold;">0</td>
+				<td></td>
+			</tr>
+			@endif --}}
 			@empty
 			<tr>
 				<td class="lb-table-empty" colspan="7" >Belum ada data</td>

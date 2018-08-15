@@ -15,7 +15,7 @@
   <label class="control-label col-sm-2" for="time">Time</label>
   <div class="col-sm-10">
     {{-- <input type="number" class="form-control" name="time" id="time" placeholder="Enter Time"> --}}
-    {!! Form::number('time', null, ['class'=>"form-control", 'id'=>"time", 'placeholder'=>"Enter Time", 'required']) !!}
+    {!! Form::text('time', null, ['class'=>"form-control", 'id'=>"time", 'placeholder'=>"Enter Time", 'required']) !!}
   </div>
 </div>
 <div class="form-group">
