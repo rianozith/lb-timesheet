@@ -74,6 +74,7 @@
 					    @php $aDate[] = $detail->date; $num = $num+1; $row[] = $key;@endphp
 					@endif
 				</td>
+
 				<td class="text-center">{{$detail->category->name}}</td>
 				<td class="text-center">{{$detail->time}}</td>
 				<td class="text-center">{{$detail->mytask}}</td>
