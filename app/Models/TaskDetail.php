@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class TaskDetail extends Model
 {
     protected $fillable = [
-    	'date', 'task_id', 'category_id', 'date', 'time','mytask', 'sub_total', 'note'
+    	'task_id', 'category_id', 'date', 'time','mytask', 'sub_total', 'note'
     ];
 
     public static function boot() {

@@ -48,10 +48,13 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
+            <li><a href="{{route('task.index')}}">Dashboard</a></li>
+            <li><a href="{{route('category.index')}}">Category</a></li>
+            <li><a href="{{route('chart.index')}}">Chart</a></li>
+            <li><a href="">Report</a></li>
+            {{-- <li><a href="#">Settings</a></li>
             <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="#">Help</a></li> --}}
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">

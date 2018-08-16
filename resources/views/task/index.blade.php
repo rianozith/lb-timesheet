@@ -16,6 +16,9 @@ My Summary
 		text-align: center;
 	}
 </style>
+<style type="text/css" media="screen">
+	
+</style>
 @endpush
 
 @section('content')
@@ -30,15 +33,15 @@ My Summary
 	</div>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-12 col-xs-12">
 	<table class="table table-hover table-striped table-responsive">
 		<thead>
 			<tr>
 				<th class="text-center">#</th>
 		        <th class="text-center">Period</th>
-		        <th class="text-center">Total Task</th>
-		        <th class="text-center">Total Time</th>
-		        <th class="text-center">Grand Total</th>
+		        <th class="text-center hidden-xs">Total Task</th>
+		        <th class="text-center hidden-xs">Total Time</th>
+		        <th class="text-center hidden-xs">Grand Total</th>
 		        <th class="text-center">Earnings</th>
 		        <th class="text-center">Action</th>
 			</tr>
@@ -48,9 +51,9 @@ My Summary
 			<tr>
 				<td class="text-center">{{$key+1}}</td>
 				<td class="text-center">{{$task->period_idn}}</td>
-				<td class="text-center">{{$task->total_time}}</td>
-				<td class="text-center">{{$task->total_task}}</td>
-				<td class="text-center">{{$task->grand_total}}</td>
+				<td class="text-center hidden-xs">{{$task->total_time}}</td>
+				<td class="text-center hidden-xs">{{$task->total_task}}</td>
+				<td class="text-center hidden-xs">{{$task->grand_total}}</td>
 				<td class="text-center">${{$task->earning}}</td>
 				<td class="text-center">
 					

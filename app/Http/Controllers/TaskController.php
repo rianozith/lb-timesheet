@@ -77,11 +77,14 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        $details = TaskDetail::where('task_id', $task->id)->orderBy('date', 'asc')->get();
-        $groupDate = $details->groupBy('date');
+        $details = TaskDetail::where('task_id', $task->id)->orderBy('date')->get();
+        $groupDate = $details->groupBy('date', 'category_id');
+
+        // dd($groupDate); //debuging
+
         $task_id = $task->id;
         $categories = Category::pluck('name', 'id');
-        return view('task.show', compact('task' ,'task_id', 'details', 'categories', 'groupDate' ));
+        return view('task.show', compact('task' ,'task_id', 'categories', 'groupDate', 'details'));
     }
 
     /**
