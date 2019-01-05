@@ -16,10 +16,10 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->date('period');
-            $table->decimal('total_time',5,2)->default(0);
+            $table->decimal('total_time',10,2)->default(0);
             $table->integer('total_task')->default(0);
             $table->integer('grand_total')->default(0);
-            $table->decimal('earning',8,2)->default(0);
+            $table->decimal('earning',10,2)->default(0);
 
             $table->timestamps();
         });

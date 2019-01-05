@@ -18,9 +18,9 @@ class CreateTaskDetailsTable extends Migration
             $table->integer('task_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->date('date');
-            $table->decimal('time',5,2);
+            $table->decimal('time',10,2);
             $table->integer('mytask');
-            $table->decimal('sub_total',7,2);
+            $table->decimal('sub_total',10,2);
             $table->string('note')->nullable();
 
             $table->foreign('task_id')->references('id')->on('tasks');
