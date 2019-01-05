@@ -113,7 +113,7 @@ class TaskController extends Controller
 
         Task::update([$request->all()]);
 
-        flash('task berahasil diedit');
+        flash('Task berahasil diedit');
         return redirect()->back();
     }
 
@@ -126,7 +126,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         Task::find($task->id)->delete();
-        flash('task berhasil dihapus');
+        flash('Task berhasil dihapus');
         return redirect()->back();
     }
 }

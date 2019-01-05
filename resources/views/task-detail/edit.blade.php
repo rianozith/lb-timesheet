@@ -25,7 +25,7 @@ Edit
          <div class="form-group">
             <label class="control-label col-sm-2" for="time">Time</label>
             <div class="col-sm-10">
-              <input type="number" class="form-control" name="time" id="time" value="{{$taskDetail->time}}" placeholder="Enter Time">
+              <input type="text" class="form-control" name="time" id="time" value="{{$taskDetail->time}}" placeholder="Enter Time">
             </div>
          </div>
          <div class="form-group">

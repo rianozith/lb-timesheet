@@ -41,7 +41,7 @@ class TaskDetailController extends Controller
             'task_id' => 'integer',
             'date' => 'date',
             'category_id' => 'integer',
-            'time' => 'numeric',
+           
             'mytask' => 'integer',
         ]);
 
@@ -55,9 +55,9 @@ class TaskDetailController extends Controller
         ]);
 
         if ($detail) {
-            flash('timesheet berhasil ditambahkan')->success();
+            flash('Timesheet berhasil ditambahkan')->success();
         }else{
-            flash('timesheet gagal ditambahkan')->error();
+            flash('Timesheet gagal ditambahkan')->error();
         }
         return redirect()->route('task.show', $detail->task_id);
     }
@@ -98,7 +98,7 @@ class TaskDetailController extends Controller
             'task_id' => 'integer',
             'date' => 'date',
             'category_id' => 'integer',
-            'time' => 'numeric',
+           
             'mytask' => 'integer',
         ]);
         
@@ -110,7 +110,7 @@ class TaskDetailController extends Controller
         $detail->sub_total      = $request->mytask * $request->time;
         $detail->save();
 
-        flash('task detail berahasil diedit');
+        flash('Daily task berahasil diedit');
         return redirect()->route('task.show', $taskDetail->task_id);
     }
 
@@ -128,7 +128,7 @@ class TaskDetailController extends Controller
         $detail->delete();
         $detail->task->refreshTotalTask();
 
-        flash('task detail berhasil dihapus')->success();
+        flash('Daily task berhasil dihapus')->success();
         return redirect()->back();
         // return response()->json(true);
     }
