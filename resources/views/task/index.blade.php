@@ -4,6 +4,10 @@
 My Summary
 @endsection
 
+@section('export')
+<a href="/task_export_excel" class="btn btn-info btn-sm" target="_blank">EXPORT TO EXCEL</a>
+@endsection
+
 @push('css')
 <style type="text/css" media="screen">
 	.lb-table-task{

@@ -4,6 +4,11 @@
 Category
 @endsection
 
+@section('export')
+<!-- <button class="btn btn-sm btn-info">Export</button> -->
+<a href="/category_export_excel" class="btn btn-info btn-sm" target="_blank">EXPORT TO EXCEL</a>
+@endsection
+
 @section('content')
 <div class="row">
 	<div class="col-md-12">

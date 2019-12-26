@@ -4,6 +4,10 @@
 	{{ $task->period_idn }} 
 @endsection
 
+@section('export')
+	<a href="/task_detail_export_excel" class="btn btn-info btn-sm" target="_blank">EXPORT TO EXCEL</a> 
+@endsection
+
 @section('content')
 
 <div class="col-md-12">

@@ -21,7 +21,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('dashboard', 'DashboardController@index')->name('dashboad.index');
+Route::get('category_export_excel', 'ExportController@category_export_excel');
+Route::get('task_export_excel', 'ExportController@task_export_excel');
+Route::get('task_detail_export_excel', 'ExportController@task_detail_export_excel');
 Route::resource('category', 'CategoryController');
 Route::resource('task', 'TaskController');
 Route::resource('task-detail', 'TaskDetailController');
 Route::resource('chart', 'ChartController');
+
