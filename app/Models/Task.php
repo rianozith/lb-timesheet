@@ -33,7 +33,16 @@ class Task extends Model
         $this->total_time = $total_time;
         $this->total_task = $total_task;
         $this->grand_total = $sub_total;
-        $this->earning = ($this->grand_total/60) * 8.98;
+        // jika edit setelah desember 2020 maka earning * 5
+        $year = 2020; 
+        $month = 12; 
+        $day = 1;
+        if ($this->created_at > Carbon::createFromDate($year, $month, $day) ) {
+            $this->earning = ($this->grand_total/60) * 5;
+        } else {
+            $this->earning = ($this->grand_total/60) * 8.82;
+        }
+        
         $this->save();
 
     }
