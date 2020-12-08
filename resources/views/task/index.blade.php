@@ -46,6 +46,7 @@ My Summary
 		        <th class="text-center hidden-xs">Total Task</th>
 		        <th class="text-center hidden-xs">Total Time</th>
 		        <th class="text-center hidden-xs">Grand Total</th>
+		        <th class="text-center hidden-xs">Total Hours</th>
 		        <th class="text-center">Earnings</th>
 		        <th class="text-center">Action</th>
 			</tr>
@@ -58,6 +59,7 @@ My Summary
 				<td class="text-center hidden-xs">{{$task->total_time}}</td>
 				<td class="text-center hidden-xs">{{$task->total_task}}</td>
 				<td class="text-center hidden-xs">{{$task->grand_total}}</td>
+				<td class="text-center hidden-xs">{{round($task->grand_total/60, 2)}}</td>
 				<td class="text-center">${{$task->earning}}</td>
 				<td class="text-center">
 					
